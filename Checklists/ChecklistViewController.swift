@@ -30,6 +30,7 @@ class ChecklistViewController: UITableViewController {
             let label = cell.viewWithTag(1000) as! UILabel
             //Here you ask the table view cell for the view with tag 1000. That is the tag you set on the label in the storyboard, so this returns a reference to the corresponding UILabel object.
             if indexPath.row % 5 == 0 {
+                //This uses the remainder operator, represented by the % sign
                 label.text = "Walk the dog"
             } else if indexPath.row % 5 == 1 {
                 label.text = "Brush my teeth"
@@ -43,5 +44,18 @@ class ChecklistViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+                if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                    //The checkmark is part of the cell (the accessory, remember?), so you first need to find the UITableViewCell object for the tapped row.
+                    //this is not the same method as the data source method tableView(cellForRowAtIndexPath).
+                    //Because it is theoretically possible that there is no cell at the specified index-path,for example if that row isn’t visible, you need to use the special if let statement.
+                    if cell.accessoryType == .None {
+                    cell.accessoryType = .Checkmark
+                    } else {
+                    cell.accessoryType = .None
+                    }
+                }
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 }
 
