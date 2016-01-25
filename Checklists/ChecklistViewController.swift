@@ -52,6 +52,7 @@ class ChecklistViewController: UITableViewController {
             } else if indexPath.row == 4 {
                 label.text = row4text
             }
+        configureCheckmarkForCell(cell, indexPath: indexPath)
         return cell
     }
     
@@ -86,5 +87,26 @@ class ChecklistViewController: UITableViewController {
             }
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    func configureCheckmarkForCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+                    var isChecked = false
+                    if indexPath.row == 0 {
+                    isChecked = row0checked
+                } else if indexPath.row == 1 {
+                    isChecked = row1checked
+                } else if indexPath.row == 2 {
+                    isChecked = row2checked
+                } else if indexPath.row == 3 {
+                    isChecked = row3checked
+                } else if indexPath.row == 4 {
+                    isChecked = row4checked
+                    }
+                    if isChecked {
+                    cell.accessoryType = .Checkmark
+                    } else {
+                    cell.accessoryType = .None
+                }
+    }
+    
 }
 
