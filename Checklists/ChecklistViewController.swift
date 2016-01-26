@@ -9,17 +9,31 @@
 import UIKit
 
 class ChecklistViewController: UITableViewController {
-    var row0text = "Walk the dog"
-    var row1text = "Brush teeth"
-    var row2text = "Learn iOS development"
-    var row3text = "Soccer practice"
-    var row4text = "Eat ice cream"
-    var row0checked = false
-    var row1checked = true
-    var row2checked = true
-    var row3checked = false
-    var row4checked = true
-//These ten instance variables are the data model.
+    var row0item: ChecklistItem
+    var row1item: ChecklistItem
+    var row2item: ChecklistItem
+    var row3item: ChecklistItem
+    var row4item: ChecklistItem
+    //These five instance variables are the data model.
+    
+    required init?(coder aDecoder: NSCoder) {
+        row0item = ChecklistItem()
+        row0item.text = "Walk the dog"
+        row0item.checked = false
+        row1item = ChecklistItem()
+        row1item.text = "Brush my teeth"
+        row1item.checked = true
+        row2item = ChecklistItem()
+        row2item.text = "Learn iOS development"
+        row2item.checked = true
+        row3item = ChecklistItem()
+        row3item.text = "Soccer practice"
+        row3item.checked = false
+        row4item = ChecklistItem()
+        row4item.text = "Eat ice cream"
+        row4item.checked = true
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +56,15 @@ class ChecklistViewController: UITableViewController {
             //Here you ask the table view cell for the view with tag 1000. That is the tag you set on the label in the storyboard, so this returns a reference to the corresponding UILabel object.
             if indexPath.row == 0 {
                 //This uses the remainder operator, represented by the % sign
-                label.text = row0text
+                label.text = row0item.text
             } else if indexPath.row == 1 {
-                label.text = row1text
+                label.text = row1item.text
             } else if indexPath.row == 2 {
-                label.text = row2text
+                label.text = row2item.text
             } else if indexPath.row == 3 {
-                label.text = row3text
+                label.text = row3item.text
             } else if indexPath.row == 4 {
-                label.text = row4text
+                label.text = row4item.text
             }
         configureCheckmarkForCell(cell, indexPath: indexPath)
         return cell
@@ -62,15 +76,15 @@ class ChecklistViewController: UITableViewController {
                     //this is not the same method as the data source method tableView(cellForRowAtIndexPath).
                     //Because it is theoretically possible that there is no cell at the specified index-path,for example if that row isn’t visible, you need to use the special if let statement.
                 if indexPath.row == 0 {
-                row0checked = !row0checked
+                row0item.checked = !row0item.checked
             } else if indexPath.row == 1 {
-                row1checked = !row1checked
+                row1item.checked = !row1item.checked
             } else if indexPath.row == 2 {
-                row2checked = !row2checked
+                row2item.checked = !row2item.checked
             } else if indexPath.row == 3 {
-                row3checked = !row3checked
+                row3item.checked = !row3item.checked
             } else if indexPath.row == 4 {
-                row4checked = !row4checked
+                row4item.checked = !row4item.checked
                 }
                configureCheckmarkForCell(cell, indexPath: indexPath)
             }
@@ -80,15 +94,15 @@ class ChecklistViewController: UITableViewController {
     func configureCheckmarkForCell(cell: UITableViewCell, indexPath: NSIndexPath) {
                     var isChecked = false
                     if indexPath.row == 0 {
-                    isChecked = row0checked
+                    isChecked = row0item.checked
                 } else if indexPath.row == 1 {
-                    isChecked = row1checked
+                    isChecked = row1item.checked
                 } else if indexPath.row == 2 {
-                    isChecked = row2checked
+                    isChecked = row2item.checked
                 } else if indexPath.row == 3 {
-                    isChecked = row3checked
+                    isChecked = row3item.checked
                 } else if indexPath.row == 4 {
-                    isChecked = row4checked
+                    isChecked = row4item.checked
                     }
                     if isChecked {
                     cell.accessoryType = .Checkmark

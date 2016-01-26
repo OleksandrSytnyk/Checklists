@@ -12,6 +12,7 @@
 		E42912E21C5542BD004C8D96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E42912E01C5542BD004C8D96 /* Main.storyboard */; };
 		E42912E41C5542BD004C8D96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42912E31C5542BD004C8D96 /* Assets.xcassets */; };
 		E42912E71C5542BD004C8D96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E42912E51C5542BD004C8D96 /* LaunchScreen.storyboard */; };
+		E48462511C57B39600CDA3BE /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48462501C57B39500CDA3BE /* ChecklistItem.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		E42912E31C5542BD004C8D96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E42912E61C5542BD004C8D96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E42912E81C5542BD004C8D96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E48462501C57B39500CDA3BE /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				E42912E31C5542BD004C8D96 /* Assets.xcassets */,
 				E42912E51C5542BD004C8D96 /* LaunchScreen.storyboard */,
 				E42912E81C5542BD004C8D96 /* Info.plist */,
+				E48462501C57B39500CDA3BE /* ChecklistItem.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E42912DF1C5542BD004C8D96 /* ChecklistViewController.swift in Sources */,
+				E48462511C57B39600CDA3BE /* ChecklistItem.swift in Sources */,
 				E42912DD1C5542BD004C8D96 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +288,7 @@
 				E42912ED1C5542BD004C8D96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
