@@ -50,7 +50,7 @@
         <!--Add Item-->
         <scene sceneID="X41-Sb-Sx2">
             <objects>
-                <tableViewController id="4Qh-rP-5wC" sceneMemberID="viewController">
+                <tableViewController id="4Qh-rP-5wC" customClass="AddItemViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="v68-zF-x7N">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,8 +72,16 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add Item" id="IXR-jT-ab2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wcS-Rw-Psg"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="qCD-4L-lHB"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wcS-Rw-Psg">
+                            <connections>
+                                <action selector="cancel" destination="4Qh-rP-5wC" id="lxl-Le-Mil"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="qCD-4L-lHB">
+                            <connections>
+                                <action selector="done" destination="4Qh-rP-5wC" id="KP5-mZ-AWi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
