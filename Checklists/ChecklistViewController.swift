@@ -72,6 +72,13 @@ class ChecklistViewController: UITableViewController {
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        items.removeAtIndex(indexPath.row)
+        let indexPaths = [indexPath]
+        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    }
+    //When the commitEditingStyle method is present in your view controller (it comes from the table view data source), the table view will automatically enable swipe-to- delete.
+    
     func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
                     if item.checked {
                     cell.accessoryType = .Checkmark
@@ -95,8 +102,8 @@ class ChecklistViewController: UITableViewController {
         let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
         let indexPaths = [indexPath]
         tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-        
     }
+    
 }
 
 
