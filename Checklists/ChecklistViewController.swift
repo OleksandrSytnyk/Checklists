@@ -55,10 +55,8 @@ class ChecklistViewController: UITableViewController {
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier( "ChecklistItem", forIndexPath: indexPath)
             let item = items[indexPath.row]
-            let label = cell.viewWithTag(1000) as! UILabel
-            //Here you ask the table view cell for the view with tag 1000. That is the tag you set on the label in the storyboard, so this returns a reference to the corresponding UILabel object.
-            label.text = item.text
-        configureCheckmarkForCell(cell, indexPath: indexPath)
+            configureTextForCell(cell, withChecklistItem: item) 
+            configureCheckmarkForCell(cell, withChecklistItem: item)
         return cell
     }
     
@@ -68,20 +66,23 @@ class ChecklistViewController: UITableViewController {
                     //this is not the same method as the data source method tableView(cellForRowAtIndexPath).
                     //Because it is theoretically possible that there is no cell at the specified index-path,for example if that row isn’t visible, you need to use the special if let statement.
                 let item = items[indexPath.row]
-                    item.checked = !item.checked
-               configureCheckmarkForCell(cell, indexPath: indexPath)
+        item.toggleChecked()
+        configureCheckmarkForCell(cell, withChecklistItem: item)
             }
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func configureCheckmarkForCell(cell: UITableViewCell, indexPath: NSIndexPath) {
-                   let item = items[indexPath.row]
+    func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
                     if item.checked {
                     cell.accessoryType = .Checkmark
                     } else {
                     cell.accessoryType = .None
                 }
     }
-    
 }
+
+func configureTextForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
+        let label = cell.viewWithTag(1000) as! UILabel
+        label.text = item.text }
+
 
