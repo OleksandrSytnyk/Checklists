@@ -1,8 +1,9 @@
 
 import UIKit
 
-class AddItemViewController: UITableViewController {
+class AddItemViewController: UITableViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
     
     @IBAction func cancel() {
@@ -24,5 +25,17 @@ class AddItemViewController: UITableViewController {
         textField.becomeFirstResponder()
         //giving the control focus
     }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let oldText: NSString = textField.text!
+        let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
+        
+        if newText.length > 0 {
+            doneBarButton.enabled = true
+        } else {
+            doneBarButton.enabled = false
+        }
+        return true
+    }//This is one of seven UITextField delegate methods. It is invoked every time the user changes the text, whether by tapping on the keyboard or by cut/paste.
 
 }
