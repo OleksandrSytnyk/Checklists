@@ -1,19 +1,30 @@
 
 import UIKit
 
+protocol AddItemViewControllerDelegate: class {
+    func addItemViewControllerDidCancel(controller: AddItemViewController)
+    func addItemViewController(controller: AddItemViewController,
+    didFinishAddingItem item: ChecklistItem)
+}
+
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
     
     @IBAction func cancel() {
-    dismissViewControllerAnimated(true, completion: nil)
+    delegate?.addItemViewControllerDidCancel(self)
     }
 
     @IBAction func done() {
-        print("Content of the text field: \(textField.text!)")
-    dismissViewControllerAnimated(true, completion: nil)
+        let item = ChecklistItem()
+        item.text = textField.text!
+        item.checked = false
+        
+        delegate?.addItemViewController(self, didFinishAddingItem: item)
+        
     }
+    weak var delegate: AddItemViewControllerDelegate?
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         return nil
@@ -30,7 +41,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         let oldText: NSString = textField.text!
         let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
         doneBarButton.enabled = (newText.length > 0)
-        return true
+        return true//true means that the specified text should be changed.
     }//This is one of seven UITextField delegate methods. It is invoked every time the user changes the text, whether by tapping on the keyboard or by cut/paste.
 
 }
