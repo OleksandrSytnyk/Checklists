@@ -80,15 +80,16 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     //When the commitEditingStyle method is present in your view controller (it comes from the table view data source), the table view will automatically enable swipe-to- delete.
     
     func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
+        let label = cell.viewWithTag(1001) as! UILabel
                     if item.checked {
-                    cell.accessoryType = .Checkmark
+                    label.text = "√"
                     } else {
-                    cell.accessoryType = .None
+                    label.text = ""
                 }
     }
     
     func configureTextForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
-        let label = cell.viewWithTag(1000) as! UILabel
+        let label = cell.viewWithTag(1001) as! UILabel
         label.text = item.text
     }
 
@@ -111,6 +112,16 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         let controller = navigationController.topViewController as! AddItemViewController
         //ThentopViewController property refers to the screen that is currently active inside the navigation controller.
         controller.delegate = self
+        } else if segue.identifier == "EditItem" {
+        let navigationController = segue.destinationViewController
+            as! UINavigationController
+        let controller = navigationController.topViewController
+            as! AddItemViewController
+        controller.delegate = self
+        if let indexPath = tableView.indexPathForCell(
+            sender as! UITableViewCell) {
+            controller.itemToEdit = items[indexPath.row]
+            }
         }
     }
 }

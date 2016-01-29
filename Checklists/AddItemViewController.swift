@@ -8,7 +8,9 @@ protocol AddItemViewControllerDelegate: class {
 }
 
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
-    
+    var itemToEdit: ChecklistItem?
+     //This variable contains the existing ChecklistItem object that the user will be editing. But when adding a new to-do item, itemToEdit will be nil. That is how the view controller will make the distinction between adding and editing.
+        
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
     
@@ -36,6 +38,14 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         textField.becomeFirstResponder()
         //giving the control focus
     }
+        
+        override func viewDidLoad() {
+            if let item = itemToEdit {
+        title = "Edit Item"
+        //Each view controller has a number of built-in properties and title is one of them.
+        textField.text = item.text
+            }
+        }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let oldText: NSString = textField.text!
