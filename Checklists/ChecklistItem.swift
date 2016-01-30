@@ -9,6 +9,7 @@
 import Foundation
 
 class ChecklistItem: NSObject {
+    // inheritance of NSObject is necessary to do ChecklistItem Equatable to enable method indexOf in delegate's method of CheckListViewController
     var text = ""
     var checked = false
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
+class ChecklistViewController: UITableViewController, ItemDetailViewControllerDelegate {
     var items: [ChecklistItem]
     //These five instance variables are the data model.
     
@@ -89,14 +89,14 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     }
     
     func configureTextForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
-        let label = cell.viewWithTag(1001) as! UILabel
+        let label = cell.viewWithTag(1000) as! UILabel
         label.text = item.text
     }
 
-    func addItemViewControllerDidCancel(controller: AddItemViewController) { dismissViewControllerAnimated(true, completion: nil)
+    func itemDetailViewControllerDidCancel(controller: ItemDetailViewController) { dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: ChecklistItem) {
+    func itemDetailViewController(controller: ItemDetailViewController, didFinishAddingItem item: ChecklistItem) {
         let newRowIndex = items.count
         items.append(item)
         let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
@@ -106,7 +106,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func addItemViewController( controller:  AddItemViewController, didFinishEditingItem item: ChecklistItem) {
+    func itemDetailViewController( controller:  ItemDetailViewController, didFinishEditingItem item: ChecklistItem) {
         if let index = items.indexOf(item) {
             let indexPath = NSIndexPath(forRow: index, inSection: 0)
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
@@ -118,14 +118,14 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AddItem" {
         let navigationController = segue.destinationViewController as! UINavigationController
-        let controller = navigationController.topViewController as! AddItemViewController
+        let controller = navigationController.topViewController as! ItemDetailViewController
         //ThentopViewController property refers to the screen that is currently active inside the navigation controller.
         controller.delegate = self
         } else if segue.identifier == "EditItem" {
         let navigationController = segue.destinationViewController
             as! UINavigationController
         let controller = navigationController.topViewController
-            as! AddItemViewController
+            as! ItemDetailViewController
         controller.delegate = self
         if let indexPath = tableView.indexPathForCell(
             sender as! UITableViewCell) {

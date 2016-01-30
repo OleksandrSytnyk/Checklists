@@ -12,19 +12,19 @@
 		E42912E21C5542BD004C8D96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E42912E01C5542BD004C8D96 /* Main.storyboard */; };
 		E42912E41C5542BD004C8D96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42912E31C5542BD004C8D96 /* Assets.xcassets */; };
 		E42912E71C5542BD004C8D96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E42912E51C5542BD004C8D96 /* LaunchScreen.storyboard */; };
-		E47693541C58E4BB00702BF5 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47693531C58E4BB00702BF5 /* AddItemViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E47693541C58E4BB00702BF5 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47693531C58E4BB00702BF5 /* ItemDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E48462511C57B39600CDA3BE /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48462501C57B39500CDA3BE /* ChecklistItem.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E42912D91C5542BD004C8D96 /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E42912DC1C5542BD004C8D96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E42912DE1C5542BD004C8D96 /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
+		E42912DE1C5542BD004C8D96 /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChecklistViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E42912E11C5542BD004C8D96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E42912E31C5542BD004C8D96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E42912E61C5542BD004C8D96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E42912E81C5542BD004C8D96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E47693531C58E4BB00702BF5 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		E47693531C58E4BB00702BF5 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ItemDetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E48462501C57B39500CDA3BE /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,7 +65,7 @@
 				E42912E51C5542BD004C8D96 /* LaunchScreen.storyboard */,
 				E42912E81C5542BD004C8D96 /* Info.plist */,
 				E48462501C57B39500CDA3BE /* ChecklistItem.swift */,
-				E47693531C58E4BB00702BF5 /* AddItemViewController.swift */,
+				E47693531C58E4BB00702BF5 /* ItemDetailViewController.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E42912DF1C5542BD004C8D96 /* ChecklistViewController.swift in Sources */,
-				E47693541C58E4BB00702BF5 /* AddItemViewController.swift in Sources */,
+				E47693541C58E4BB00702BF5 /* ItemDetailViewController.swift in Sources */,
 				E48462511C57B39600CDA3BE /* ChecklistItem.swift in Sources */,
 				E42912DD1C5542BD004C8D96 /* AppDelegate.swift in Sources */,
 			);
