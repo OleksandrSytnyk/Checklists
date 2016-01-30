@@ -106,6 +106,15 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func addItemViewController( controller:  AddItemViewController, didFinishEditingItem item: ChecklistItem) {
+        if let index = items.indexOf(item) {
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                configureTextForCell(cell, withChecklistItem: item) }
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AddItem" {
         let navigationController = segue.destinationViewController as! UINavigationController
@@ -124,6 +133,8 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
             }
         }
     }
+    
+    
 }
 
 

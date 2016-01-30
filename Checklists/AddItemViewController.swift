@@ -5,6 +5,7 @@ protocol AddItemViewControllerDelegate: class {
     func addItemViewControllerDidCancel(controller: AddItemViewController)
     func addItemViewController(controller: AddItemViewController,
     didFinishAddingItem item: ChecklistItem)
+    func addItemViewController(controller: AddItemViewController, didFinishEditingItem item: ChecklistItem)
 }
 
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
@@ -14,19 +15,23 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
     
+    weak var delegate: AddItemViewControllerDelegate?
+    
     @IBAction func cancel() {
     delegate?.addItemViewControllerDidCancel(self)
     }
 
     @IBAction func done() {
+        if let item = itemToEdit {
+            item.text = textField.text!
+            delegate?.addItemViewController(self, didFinishEditingItem: item)
+        } else {
         let item = ChecklistItem()
         item.text = textField.text!
         item.checked = false
-        
         delegate?.addItemViewController(self, didFinishAddingItem: item)
-        
+        }
     }
-    weak var delegate: AddItemViewControllerDelegate?
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         return nil
@@ -44,6 +49,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         title = "Edit Item"
         //Each view controller has a number of built-in properties and title is one of them.
         textField.text = item.text
+        doneBarButton.enabled = true
             }
         }
     
