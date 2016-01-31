@@ -84,7 +84,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
-                                                        <action selector="done" destination="4Qh-rP-5wC" eventType="editingDidEnd" id="54d-aO-IrW"/>
+                                                        <action selector="done" destination="4Qh-rP-5wC" eventType="editingDidEndOnExit" id="W9Q-lu-599"/>
                                                         <outlet property="delegate" destination="4Qh-rP-5wC" id="aO4-EH-wpL"/>
                                                     </connections>
                                                 </textField>
