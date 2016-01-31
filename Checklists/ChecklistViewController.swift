@@ -35,6 +35,10 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         row4item.checked = true
         items.append(row4item)
         super.init(coder: aDecoder)
+        
+        print("Documents folder is \(documentsDirectory())")
+        print("Data file path is \(dataFilePath())")
+        //this is to check whether two new methods work correctly. Just here because all variables are initiated and this method will executed wih guarantee
     }
     
     override func viewDidLoad() {
@@ -70,14 +74,16 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         configureCheckmarkForCell(cell, withChecklistItem: item)
             }
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        saveChecklistItem()
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         items.removeAtIndex(indexPath.row)
         let indexPaths = [indexPath]
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        saveChecklistItem()
     }
-    //When the commitEditingStyle method is present in your view controller (it comes from the table view data source), the table view will automatically enable swipe-to- delete.
+    //When the commitEditingStyle method is present in your view controller (it comes from the table view data source), the table view will automatically enable swipe-to- delete. This is the swipe-to-delete function.
     
     func configureTextForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
         let label = cell.viewWithTag(1000) as! UILabel
@@ -105,6 +111,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
         
         dismissViewControllerAnimated(true, completion: nil)
+        saveChecklistItem()
     }
     
     func itemDetailViewController( controller:  ItemDetailViewController, didFinishEditingItem item: ChecklistItem) {
@@ -114,6 +121,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
                 configureTextForCell(cell, withChecklistItem: item) }
         }
         dismissViewControllerAnimated(true, completion: nil)
+        saveChecklistItem()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -135,8 +143,24 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         }
     }
     
+    func documentsDirectory() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    return paths[0]
+    }
+    
+    func dataFilePath() -> String {
+        return (documentsDirectory() as NSString).stringByAppendingPathComponent("Checklists.plist")
+    }
+    
+    func saveChecklistItem() {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        //NSKeyedArchiver is a form of NSCoder that creates plist files
+        archiver.encodeObject(items, forKey: "ChecklistItems")
+        archiver.finishEncoding()
+        data.writeToFile(dataFilePath(), atomically: true)
+    }
+    
     
 }
-
-
 
