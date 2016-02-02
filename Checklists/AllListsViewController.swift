@@ -9,6 +9,29 @@
 import UIKit
 
 class AllListsViewController: UITableViewController {
+    
+    var lists: [Checklist]
+    
+    required init?( coder aDecoder: NSCoder) {
+         lists = [Checklist]()
+        super.init(coder: aDecoder)
+         var list = Checklist()
+        list.name = "Birthdays"
+        lists.append(list)
+        
+        list = Checklist()//this line create a new Checklist with named "Groceries". Without it next line would juest rename the old instance of Checklist named "Birthdays"
+        //this line breaks our connection with first instance of Checklist named "Birthdays" 
+        list.name = "Groceries"
+        lists.append(list)
+        
+        list = Checklist()
+        list.name = "Cool Apps"
+        lists.append(list)
+        
+        list = Checklist()
+        list.name = "To Do"
+        lists.append(list)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +42,14 @@ class AllListsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return lists.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = cellForTableView(tableView)
-        cell.textLabel!.text = "List\(indexPath.row)"
+        let checklist = lists[indexPath.row]
+        cell.textLabel!.text = checklist.name
+        cell.accessoryType = .DetailDisclosureButton
         return cell
     }
     
