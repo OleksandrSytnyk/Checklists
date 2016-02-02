@@ -59,7 +59,15 @@ class AllListsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-            performSegueWithIdentifier("ShowChecklist", sender: nil)
-        //Previously, a tap on a row would automatically perform the segue because you had hooked up the segue to the prototype cell. However, the table view for this screen isn’t using prototype cells and therefore you have to perform the segue manually.
+        let checklist = lists[indexPath.row]
+            performSegueWithIdentifier("ShowChecklist", sender: checklist)
+        //Putting the Checklist object into the sender parameter doesn’t give this object to the ChecklistViewController yet. That happens in prepareForSegue(sender), which you still need to write.
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowChecklist" {
+            let controller = segue.destinationViewController as! ChecklistViewController
+            controller.checklist = sender as! Checklist
+        }
     }
 }
