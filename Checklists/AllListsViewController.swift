@@ -15,24 +15,19 @@ class AllListsViewController: UITableViewController {
     required init?( coder aDecoder: NSCoder) {
          lists = [Checklist]()
         super.init(coder: aDecoder)
-         var list = Checklist()
-        list.name = "Birthdays"
+         var list = Checklist( name: "Birthdays")
         lists.append(list)
         
-        list = Checklist()//this line create a new Checklist with named "Groceries". Without it next line would juest rename the old instance of Checklist named "Birthdays"
-        //this line breaks our connection with first instance of Checklist named "Birthdays" 
-        list.name = "Groceries"
+        list = Checklist(name: "Groceries")
         lists.append(list)
         
-        list = Checklist()
-        list.name = "Cool Apps"
+        list = Checklist(name: "Cool Apps")
         lists.append(list)
         
-        list = Checklist()
-        list.name = "To Do"
+        list = Checklist(name:  "To Do")
         lists.append(list)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
