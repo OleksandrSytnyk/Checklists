@@ -64,6 +64,17 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         //Putting the Checklist object into the sender parameter doesn’t give this object to the ChecklistViewController yet. That happens in prepareForSegue(sender), which you still need to write.
     }
     
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        let navigationController = storyboard?.instantiateViewControllerWithIdentifier("ListDetailNavigationController") as! UINavigationController
+        let controller = navigationController.topViewController as! ListDetailViewController
+        controller.delegate = self
+        
+        let checklist = lists[indexPath.row]
+        controller.checklistToEdit = checklist
+        
+        presentViewController(navigationController, animated: true, completion: nil)
+    }
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         lists.removeAtIndex(indexPath.row)
         let indexPaths = [indexPath]
