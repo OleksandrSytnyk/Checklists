@@ -16,7 +16,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
          lists = [Checklist]()
         super.init(coder: aDecoder)
          loadChecklists()
-                }
+        print("Documents folder is \(documentsDirectory())")
+                        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +116,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         return (documentsDirectory() as NSString).stringByAppendingPathComponent("Checklists.plist")
     }
     
-    func saveChecklistlists() {
+    func saveChecklists() {
         let data = NSMutableData()
         let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
         //NSKeyedArchiver is a form of NSCoder that creates plist files
