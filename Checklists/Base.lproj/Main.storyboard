@@ -122,7 +122,7 @@
             </objects>
             <point key="canvasLocation" x="2391" y="-80"/>
         </scene>
-        <!--Checklists-->
+        <!--CheckdataModel.lists-->
         <scene sceneID="cEZ-7R-vcL">
             <objects>
                 <tableViewController id="tte-6X-UwU" customClass="AllListsViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
@@ -135,7 +135,7 @@
                             <outlet property="delegate" destination="tte-6X-UwU" id="moe-gs-N4Z"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Checklists" id="obF-Ly-j2J">
+                    <navigationItem key="navigationItem" title="CheckdataModel.lists" id="obF-Ly-j2J">
                         <barButtonItem key="rightBarButtonItem" title="Add" id="jYk-Ib-acr">
                             <connections>
                                 <segue destination="1VM-uD-LqP" kind="presentation" identifier="AddChecklist" id="RH2-gu-Lqi"/>

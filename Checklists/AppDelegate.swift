@@ -10,18 +10,12 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    let dataModel = DataModel()
     var window: UIWindow?
 
-    /*func saveData() {
-    let navigationController = window!.rootViewController
-    as! UINavigationController let controller = navigationController.viewControllers[0]
-    controller.saveChecklists() }*/
-    
     func saveData() {
-        let navigationController = window!.rootViewController as! UINavigationController
-        let controller = navigationController.viewControllers[0] as! AllListsViewController
-        controller.saveChecklists()
+        dataModel.saveChecklists()
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
@@ -33,9 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        let navigationController = window!.rootViewController as! UINavigationController
+        let controller = navigationController.viewControllers[0] as! AllListsViewController
+        controller.dataModel = dataModel
         return true
     }
+    //The best place to share the DataModel instance with AllListsViewController is in the application(didFinishLaunchingWithOptions) method, which gets called as soon as the app starts up.
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
