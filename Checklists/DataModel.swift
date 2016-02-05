@@ -10,6 +10,7 @@ class DataModel {
         }
         set {
             NSUserDefaults.standardUserDefaults().setInteger(newValue, forKey: "ChecklistIndex")
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     
