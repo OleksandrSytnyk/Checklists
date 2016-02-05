@@ -40,7 +40,10 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         let cell = cellForTableView(tableView)
         let checklist = dataModel.lists[indexPath.row]
         cell.textLabel!.text = checklist.name
+        //The ! is necessary because textLabel and detailTextLabel are optionals.
         cell.accessoryType = .DetailDisclosureButton
+        cell.detailTextLabel!.text = "\(checklist.countUncheckedItems()) Remaining"
+        //you can even call methods inside interpolated strings.
         return cell
     }
     
@@ -49,7 +52,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
         return cell
             } else {
-        return UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+        return UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
         
         }
     }
