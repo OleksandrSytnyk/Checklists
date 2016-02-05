@@ -124,5 +124,11 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         }
     }
    //The  UINavigationControllerDelegate method func navigationController(willShowViewController) is called whenever the navigation controller will slide to a new screen.
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        //you use this instead of using of a delegate to update text of the detailTextLabel. When you tap the back button on the ChecklistViewController’s navigation bar, the AllListsViewController screen will slide back into view. Just before that happens, viewWillAppear() is called.
+    }
 
 }
