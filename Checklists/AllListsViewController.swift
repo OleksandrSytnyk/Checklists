@@ -42,7 +42,14 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         cell.textLabel!.text = checklist.name
         //The ! is necessary because textLabel and detailTextLabel are optionals.
         cell.accessoryType = .DetailDisclosureButton
+        let count = checklist.countUncheckedItems()
+        if checklist.items.count == 0 {
+            cell.detailTextLabel!.text = "(No Items)"
+        } else if count == 0 {
+            cell.detailTextLabel!.text = "All Done!"
+        } else {
         cell.detailTextLabel!.text = "\(checklist.countUncheckedItems()) Remaining"
+        }
         //you can even call methods inside interpolated strings.
         return cell
     }
