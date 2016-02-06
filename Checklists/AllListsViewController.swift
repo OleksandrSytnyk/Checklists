@@ -60,6 +60,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         cell.detailTextLabel!.text = "\(checklist.countUncheckedItems()) Remaining"
         }
         //you can even call methods inside interpolated strings.
+        cell.imageView!.image = UIImage(named: checklist.iconName)
         return cell
     }
     
