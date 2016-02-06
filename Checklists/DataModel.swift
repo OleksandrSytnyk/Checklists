@@ -4,16 +4,6 @@ import Foundation
 class DataModel {
     var lists = [Checklist]()
     
-    var indexOfSelectedChecklist: Int {
-        get {
-            return NSUserDefaults.standardUserDefaults().integerForKey("ChecklistIndex")
-        }
-        set {
-            NSUserDefaults.standardUserDefaults().setInteger(newValue, forKey: "ChecklistIndex")
-            NSUserDefaults.standardUserDefaults().synchronize()
-        }
-    }
-    
     init() {
         loadChecklists()
         registerDefault()
@@ -55,6 +45,16 @@ class DataModel {
         NSUserDefaults.standardUserDefaults().registerDefaults(dictionary)
     }
     //NSUserDefaults’s integerForKey() method returns 0 if it cannot find the value for the key you specify, but in this app 0 is a valid row index. At this point the app doesn’t have any checklists yet, so index 0 does not exist in the lists array. That is why the app crashes. Here we set a new default value -1. It's explanation for previous commit.
+    
+    var indexOfSelectedChecklist: Int {
+        get {
+            return NSUserDefaults.standardUserDefaults().integerForKey("ChecklistIndex")
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setInteger(newValue, forKey: "ChecklistIndex")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
     
     func handleFirstTime() {
         let userDefaults = NSUserDefaults.standardUserDefaults()

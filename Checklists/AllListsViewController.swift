@@ -12,11 +12,21 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     
     var dataModel: DataModel!
     
-   
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        //you use this instead of using of a delegate to update text of the detailTextLabel. When you tap the back button on the ChecklistViewController’s navigation bar, the AllListsViewController screen will slide back into view. Just before that happens, viewWillAppear() is called.
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         navigationController?.delegate = self
+        
         let index = dataModel.indexOfSelectedChecklist
         if index >= 0 && index < dataModel.lists.count {
         let checklist = dataModel.lists[index]
@@ -24,13 +34,11 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataModel.lists.count
@@ -38,6 +46,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = cellForTableView(tableView)
+        
         let checklist = dataModel.lists[indexPath.row]
         cell.textLabel!.text = checklist.name
         //The ! is necessary because textLabel and detailTextLabel are optionals.
@@ -58,7 +67,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         let cellIdentifier = "Cell"
         if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
         return cell
-            } else {
+        } else {
         return UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
         
         }
@@ -68,12 +77,19 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         dataModel.indexOfSelectedChecklist = indexPath.row
         
         let checklist = dataModel.lists[indexPath.row]
-            performSegueWithIdentifier("ShowChecklist", sender: checklist)
+        performSegueWithIdentifier("ShowChecklist", sender: checklist)
         //Putting the Checklist object into the sender parameter doesn’t give this object to the ChecklistViewController yet. That happens in prepareForSegue(sender) which has as a parameter variable sender from here.
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        dataModel.lists.removeAtIndex(indexPath.row)
+        let indexPaths = [indexPath]
+        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
     }
     
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         let navigationController = storyboard?.instantiateViewControllerWithIdentifier("ListDetailNavigationController") as! UINavigationController
+        
         let controller = navigationController.topViewController as! ListDetailViewController
         controller.delegate = self
         
@@ -83,12 +99,6 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         presentViewController(navigationController, animated: true, completion: nil)
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        dataModel.lists.removeAtIndex(indexPath.row)
-        let indexPaths = [indexPath]
-        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-    }
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowChecklist" {
             let controller = segue.destinationViewController as! ChecklistViewController
@@ -132,10 +142,4 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     }
    //The  UINavigationControllerDelegate method func navigationController(willShowViewController) is called whenever the navigation controller will slide to a new screen.
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-        //you use this instead of using of a delegate to update text of the detailTextLabel. When you tap the back button on the ChecklistViewController’s navigation bar, the AllListsViewController screen will slide back into view. Just before that happens, viewWillAppear() is called.
-    }
-
 }
