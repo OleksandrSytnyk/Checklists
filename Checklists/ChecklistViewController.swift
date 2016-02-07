@@ -65,6 +65,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
                     } else {
                     label.text = ""
                 }
+        label.textColor = view.tintColor
     }
 
     func itemDetailViewControllerDidCancel(controller: ItemDetailViewController) {
