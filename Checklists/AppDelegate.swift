@@ -18,6 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = window!.rootViewController as! UINavigationController
         let controller = navigationController.viewControllers[0] as! AllListsViewController
         controller.dataModel = dataModel
+        
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        
+        let date = NSDate(timeIntervalSinceNow: 10)
+        
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = date
+        localNotification.timeZone = NSTimeZone.defaultTimeZone()
+        localNotification.alertBody = "I am a local notification!"
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        //This makes pop up with text notification "I am a local notification!" and sound 10 sec after the app starts
         return true
     }
     //The best place to share the DataModel instance with AllListsViewController is in the application(didFinishLaunchingWithOptions) method, which gets called as soon as the app starts up.
@@ -42,6 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         saveData()
     }
+    
+    func application(app: UIApplication, didReceiveLocalNotification notification:UILocalNotification) {
+        print("didReceiveLocalNotification \(notification)")
+    }
+    //This method will be invoked when the local notification is posted and the app is still running or in a suspended state in the background.
     
     func saveData() {
         dataModel.saveChecklists()
