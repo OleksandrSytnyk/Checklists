@@ -22,15 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         
-        let date = NSDate(timeIntervalSinceNow: 10)
-        
-        let localNotification = UILocalNotification()
-        localNotification.fireDate = date
-        localNotification.timeZone = NSTimeZone.defaultTimeZone()
-        localNotification.alertBody = "I am a local notification!"
-        localNotification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-        //This makes pop up with text notification "I am a local notification!" and sound 10 sec after the app starts
         return true
     }
     //The best place to share the DataModel instance with AllListsViewController is in the application(didFinishLaunchingWithOptions) method, which gets called as soon as the app starts up.
