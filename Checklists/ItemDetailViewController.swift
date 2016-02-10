@@ -127,6 +127,14 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         updateDueDateLabel()
     }
     
+    @IBAction func shouldRemindToggled(switchControl: UISwitch) {
+        textField.resignFirstResponder()
+        if switchControl.on {
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        }
+    }
+
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let oldText: NSString = textField.text!
         let newText: NSString = oldText.stringByReplacingCharactersInRange(range, withString: string)
@@ -177,5 +185,5 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         hideDatePicker()
     }// this method is a optional delegate method of a textField and its purpose is to prevent overlapping the keyboard and the datePicker
-    
+
    }
