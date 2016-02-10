@@ -24,7 +24,7 @@ class ChecklistItem: NSObject, NSCoding {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(text, forKey: "Text")
         aCoder.encodeBool(checked, forKey: "Checked")
-        aCoder.encodeObject(dueDate, forKey: "DieDate")
+        aCoder.encodeObject(dueDate, forKey: "DueDate")
         aCoder.encodeBool(shouldRemind, forKey: "ShouldRemind")
         aCoder.encodeInteger(itemID, forKey: "ItemID")
     }

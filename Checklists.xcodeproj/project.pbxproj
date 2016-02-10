@@ -51,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				E42912DB1C5542BD004C8D96 /* Checklists */,
+				E42912E01C5542BD004C8D96 /* Main.storyboard */,
 				E42912DA1C5542BD004C8D96 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,7 +69,6 @@
 			children = (
 				E42912DC1C5542BD004C8D96 /* AppDelegate.swift */,
 				E42912DE1C5542BD004C8D96 /* ChecklistViewController.swift */,
-				E42912E01C5542BD004C8D96 /* Main.storyboard */,
 				E42912E31C5542BD004C8D96 /* Assets.xcassets */,
 				E42912E81C5542BD004C8D96 /* Info.plist */,
 				E48462501C57B39500CDA3BE /* ChecklistItem.swift */,
@@ -173,6 +173,7 @@
 				E42912E11C5542BD004C8D96 /* Base */,
 			);
 			name = Main.storyboard;
+			path = Checklists;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
