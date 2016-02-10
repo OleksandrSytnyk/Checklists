@@ -109,6 +109,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
             item.text = textField.text!
             item.shouldRemind = shouldRemindSwitch.on
             item.dueDate = dueDate
+            item.scheduleNotification()
             delegate?.itemDetailViewController(self, didFinishEditingItem: item)
         } else {
         let item = ChecklistItem()
@@ -116,6 +117,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         item.checked = false
             item.shouldRemind = shouldRemindSwitch.on
             item.dueDate = dueDate
+            item.scheduleNotification()
         delegate?.itemDetailViewController(self, didFinishAddingItem: item)
         }
     }
@@ -175,4 +177,5 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         hideDatePicker()
     }// this method is a optional delegate method of a textField and its purpose is to prevent overlapping the keyboard and the datePicker
-}
+    
+   }
