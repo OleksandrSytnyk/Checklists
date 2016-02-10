@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ChecklistItem: NSObject, NSCoding {
     // inheritance of NSObject is necessary to do ChecklistItem Equatable to enable method indexOf in delegate's method of CheckListViewController
@@ -46,9 +47,17 @@ class ChecklistItem: NSObject, NSCoding {
     func scheduleNotification() {
         if shouldRemind && dueDate.compare(NSDate()) != .OrderedAscending {
             //This compares the due date on the item with the current date.
-        print("We should schedule a notification!")
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = dueDate
+        localNotification.timeZone = NSTimeZone.defaultTimeZone()
+        localNotification.alertBody = text
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        localNotification.userInfo = ["ItemID": itemID]
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        
+        print("Scheduled notification! \(localNotification) for itemID\(itemID)")
         }
     }
-
 }
 
