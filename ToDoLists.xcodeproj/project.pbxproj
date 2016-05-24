@@ -79,7 +79,6 @@
 				E44A88181C6346E9006B1994 /* DataModel.swift */,
 				E48500541C66121500386949 /* IconPickerViewController.swift */,
 			);
-			name = ToDoLists;
 			path = ToDoLists;
 			sourceTree = "<group>";
 		};
@@ -114,7 +113,7 @@
 				TargetAttributes = {
 					E42912D81C5542BD004C8D96 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = PZQCK5T4Z8;
+						DevelopmentTeam = J62JYLRG76;
 					};
 				};
 			};
@@ -241,7 +240,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Oleksandr Sytnyk (J62JYLRG76)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -268,7 +267,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/ToDoLists/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.OleksandrSytnyk.ToDoLists;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OleksandrSytnyk.ToDoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -280,7 +279,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/ToDoLists/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.OleksandrSytnyk.ToDoLists;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OleksandrSytnyk.ToDoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
