@@ -14,6 +14,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.estimatedRowHeight = 40
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -59,11 +61,12 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         } else {
         cell.detailTextLabel!.text = "\(checklist.countUncheckedItems()) Remaining"
         }
+        
         //you can even call methods inside interpolated strings.
         cell.imageView!.image = UIImage(named: checklist.iconName)
         return cell
     }
-    
+   
     func cellForTableView( tableView: UITableView) -> UITableViewCell {
         let cellIdentifier = "Cell"
         if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {

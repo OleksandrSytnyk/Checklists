@@ -14,6 +14,14 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         title = checklist.name
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "preferredContentSizeChanged:",
+            name: UIContentSizeCategoryDidChangeNotification,
+            object: nil)
+        
+        tableView.estimatedRowHeight = 20
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +40,10 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
             configureTextForCell(cell, withChecklistItem: item) 
             configureCheckmarkForCell(cell, withChecklistItem: item)
         return cell
+    }
+    
+    func preferredContentSizeChanged(notification: NSNotification) {
+        tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -55,9 +67,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     
     func configureTextForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
         let label = cell.viewWithTag(1000) as! UILabel
-        //label.text = item.text
-        label.text = "\(item.itemID): \(item.text)"
-        //it's changed temperary to test variable item.itemID
+        label.text = item.text
+        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
     }
     
     func configureCheckmarkForCell(cell: UITableViewCell, withChecklistItem item: ChecklistItem) {
@@ -68,6 +79,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
                     label.text = ""
                 }
         label.textColor = view.tintColor
+        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
     }
 
     func itemDetailViewControllerDidCancel(controller: ItemDetailViewController) {
